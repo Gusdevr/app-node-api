@@ -1,4 +1,4 @@
-// src/instances/pg.ts
+
 import { Sequelize } from 'sequelize';
 
 const sequelize = new Sequelize({

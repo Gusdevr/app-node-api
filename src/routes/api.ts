@@ -1,6 +1,6 @@
-// src/routes/api.ts
+
 import { Router } from "express";
-import userController from '../controllers/UserController'; // Importe diretamente a instância do controller
+import userController from '../controllers/UserController'; 
 
 const router = Router();
 

@@ -1,4 +1,4 @@
-// src/controllers/UserController.ts
+
 import { Request, Response } from 'express';
 import axios from 'axios';
 import User from '../models/User';
