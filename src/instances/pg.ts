@@ -1,13 +1,14 @@
+import { Sequelize } from 'sequelize'
+import dotenv from 'dotenv'
 
-import { Sequelize } from 'sequelize';
+dotenv.config()
 
-const sequelize = new Sequelize({
-  dialect: 'postgres',
-  host: 'seu_host',
-  port: 5432,
-  username: 'seu_usuario',
-  password: 'sua_senha',
-  database: 'seu_banco_de_dados',
-});
-
-export { sequelize };
+export const sequelize = new Sequelize(
+    process.env.PG_DB as string,
+    process.env.PG_USER as string,
+    process.env.PG_PASSWORD as string,
+    {
+        dialect: 'postgres',
+        port: parseInt(process.env.PG_PORT as string)
+    }
+)
