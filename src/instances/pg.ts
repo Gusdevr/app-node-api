@@ -1,9 +1,13 @@
 // src/instances/pg.ts
-import { Pool } from 'pg';
+import { Sequelize } from 'sequelize';
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production',
+const sequelize = new Sequelize({
+  dialect: 'postgres',
+  host: 'seu_host',
+  port: 5432,
+  username: 'seu_usuario',
+  password: 'sua_senha',
+  database: 'seu_banco_de_dados',
 });
 
-export default pool;
+export { sequelize };

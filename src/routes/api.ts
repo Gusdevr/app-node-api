@@ -1,15 +1,12 @@
 // src/routes/api.ts
-import { Router } from "express"
-import  express from 'express';
-import * as UserController from '../controllers/UserController';
+import { Router } from "express";
+import userController from '../controllers/UserController'; // Importe diretamente a instância do controller
 
-const router = express.Router();
+const router = Router();
 
-router.get('/users', UserController.getUsers);
-router.post('/users', UserController.addUser);
-router.put('/users/:id', UserController.editUser);
-router.delete('/users/:id', UserController.deleteUser);
-
-// Adicione rotas para adicionar, editar, excluir usuários conforme necessário
+router.get('/users', userController.getUsers);
+router.post('/users', userController.addUser);
+router.put('/users/:id', userController.editUser);
+router.delete('/users/:id', userController.deleteUser);
 
 export default router;
