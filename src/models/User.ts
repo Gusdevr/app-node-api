@@ -1,4 +1,5 @@
 
+
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../instances/pg';
 
@@ -27,9 +28,8 @@ User.init(
   {
     sequelize,
     tableName: 'users',
+    timestamps: true, 
   }
 );
 
 export default User;
-
-  

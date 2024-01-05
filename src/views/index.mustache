@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User List</title>
+</head>
+<body>
+  <h1>User List</h1>
+  <ul>
+    {{#users}}
+      <li>{{name}} - {{email}} <a href="/edit/{{id}}">Edit</a></li>
+    {{/users}}
+  </ul>
+ <a href="/export-to-csv">Export to CSV</a>
+</body>
+</html>
