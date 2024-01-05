@@ -1,5 +1,5 @@
 
-# Plataforma Gestilt
+# Plataforma Random Data API
 
 API desenvolvida para listagem de usuários e exportação de arquivo csv para edição e manipulaçao de dados.
 
