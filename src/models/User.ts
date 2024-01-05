@@ -1,9 +1,20 @@
 
+import { DataTypes, Model, Optional, Sequelize } from "sequelize";
 
-import { DataTypes, Model } from 'sequelize';
-import { sequelize } from '../instances/pg';
+interface UserAttributes {
+  id: number;
+  name: string;
+  email: string;
+}
 
-class User extends Model {
+interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
+
+const sequelize = new Sequelize({
+  dialect: "sqlite",
+  storage: ":memory:",
+});
+
+class User extends Model<UserAttributes, UserCreationAttributes> {
   public id!: number;
   public name!: string;
   public email!: string;
@@ -27,8 +38,8 @@ User.init(
   },
   {
     sequelize,
-    tableName: 'users',
-    timestamps: true, 
+    tableName: "users",
+    timestamps: true,
   }
 );
 

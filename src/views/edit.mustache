@@ -1,20 +1,54 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit User</title>
+  <title>Editar</title>
 </head>
 <body>
-  <h1>Edit User</h1>
-  <form action="/api/users/{{id}}" method="PUT">
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" value="{{name}}" required>
-    
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="{{email}}" required>
-    
-    <button type="submit">Update User</button>
+  <h1>Edite o usuário correspondente</h1>
+  <form id="editForm">
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" required>
+
+    <label for="name">Novo Nome:</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Novo Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <button type="button" onclick="updateUser()">Save Changes</button>
   </form>
+
+  <script>
+    async function updateUser() {
+      const id = document.getElementById('id').value;
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+
+      try {
+        const response = await fetch(`/api/users/update-csv/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ id, name, email }),
+        });
+
+        if (response.ok) {
+          alert('User data updated successfully!');
+       
+          location.reload();
+        } else {
+          alert('Error updating user data. Please try again.');
+        }
+      } catch (error) {
+        console.error('Error updating user data:', error);
+        alert('Error updating user data. Please try again.');
+      }
+    }
+  </script>
+
 </body>
 </html>

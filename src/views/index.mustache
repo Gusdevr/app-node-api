@@ -3,15 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User List</title>
+  <title>Listagem de usuários</title>
 </head>
 <body>
-  <h1>User List</h1>
+  <h1>Usuários</h1>
   <ul>
     {{#users}}
       <li>{{name}} - {{email}} <a href="/edit/{{id}}">Edit</a></li>
     {{/users}}
   </ul>
- <a href="/export-to-csv">Export to CSV</a>
+  <button id="exportBtn">Exportar CSV</button>
+  <button id="refreshBtn">Atualizar Lista</button>
+
+  <form action="/search" method="GET">
+    <label for="search">Pesquisar:</label>
+    <input type="text" id="search" name="search" required>
+    <button type="submit">pesquisar</button>
+  </form>
+
+  <script>
+    document.getElementById('exportBtn').addEventListener('click', function() {
+      fetch('/export-to-csv', { method: 'GET' })
+        .then(response => {
+          if (response.ok) {
+            alert('Arquivo exportado com sucesso!');
+            location.reload();
+          } else {
+            console.error('Error exporting to CSV:', response.status, response.statusText);
+            alert('Erro na exportação do arquivo, tente novamente.');
+          }
+        })
+        .catch(error => {
+          console.error('Error exporting to CSV:', error);
+          alert('Error exporting file. Please try again.');
+        });
+    });
+
+    document.getElementById('refreshBtn').addEventListener('click', function() {
+      location.reload();
+    });
+  </script>
 </body>
 </html>
